@@ -1,0 +1,152 @@
+.main-container {
+    display: flex;
+    gap: 0px;
+    padding-top: 87px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 16px;
+    /* Correspondiente a mt-4 */
+}
+
+/* General Wrapper */
+.wrapper {
+    position: relative;
+    padding-bottom: 60px;
+    /* Espacio para la barra inferior fija */
+}
+
+/* Visibilidad de las secciones */
+.show-tab {
+    display: block !important;
+    /* Mostrar la sección seleccionada */
+}
+
+.hide-tab {
+    display: none !important;
+    /* Ocultar las secciones no seleccionadas */
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        gap: 0px;
+        padding-top: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 16px;
+        /* Correspondiente a mt-4 */
+    }
+
+    .sidebar {
+        display: none;
+        /* Ocultar columnas laterales por defecto */
+    }
+
+    /* Barra Inferior Fija */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        /* Fija la barra en la parte inferior */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        justify-content: space-around;
+        padding: 10px 0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        /* Asegura que esté encima de otros elementos */
+        transition: transform 0.3s ease;
+        /* Transición para mostrar/ocultar */
+    }
+
+    /* Ocultar la barra al hacer scroll hacia abajo */
+    .bottom-nav.hidden {
+        transform: translateY(100%);
+    }
+
+    /* Mostrar la barra al hacer scroll hacia arriba */
+    .bottom-nav.visible {
+        transform: translateY(0);
+    }
+
+    /* Botones de la barra inferior */
+    .bottom-nav button {
+        background: none;
+        border: none;
+        color: #007bff;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        outline: none;
+        /* Eliminar borde en foco */
+    }
+
+    /* Botón Activo */
+    .bottom-nav button.active {
+        color: #0056b3;
+        font-weight: bold;
+    }
+
+    /* Iconos dentro de los botones */
+    .bottom-nav span {
+        font-size: 1.5rem;
+    }
+}
+
+/* Estilos generales para columnas y contenido */
+.container {
+    display: flex;
+    gap: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Columna Izquierda y Derecha */
+.sidebar {
+    display: block;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+/* Contenido principal */
+.main-content {
+    flex: 1;
+}
+
+/* Cards dentro de columnas */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 15px;
+}
+
+/* Botones y Encabezados dentro de las columnas */
+.sidebar-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+/* Botón seleccionado en filtros */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+/* Hover en botones */
+.btn:hover {
+    opacity: 0.9;
+}

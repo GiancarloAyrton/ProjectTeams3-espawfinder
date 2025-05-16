@@ -1,0 +1,94 @@
+/* Skeleton container */
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 600px; /* Match the min-height of your sections */
+  width: 100%;
+  background-color: #f9f9f900;
+}
+
+/* Skeleton heading */
+.skeleton-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.skeleton-title, .skeleton-subtitle, .skeleton-line, .skeleton-button, .skeleton-image {
+  background: linear-gradient(90deg, #f3f3f3 25%, #e0e0e0 50%, #f3f3f3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* Keyframes for shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Skeleton gallery */
+.skeleton-gallery {
+  display: flex;
+  flex-wrap: nowrap; /* Allow wrapping for responsive design */
+  gap: 15px; /* Space between cards */
+  justify-content: center; /* Center cards */
+  width: 100%;
+}
+
+/* Skeleton card */
+.skeleton-card {
+  width: calc(50% - 20px); /* Two cards per row with spacing */
+  max-width: 390px; /* Maximum width for large screens */
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}
+
+.skeleton-image {
+  height: 200px; /* Match the height of your images */
+  border-radius: 10px 10px 0 0;
+}
+
+.skeleton-body {
+  padding: 15px;
+}
+
+.skeleton-line {
+  height: 15px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.skeleton-line.short {
+  width: 50%;
+}
+
+.skeleton-line:not(.short) {
+  width: 80%;
+}
+
+.skeleton-button {
+  width: 60%;
+  height: 30px;
+  border-radius: 20px;
+  margin: 10px auto 0;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 767px) {
+  .skeleton-gallery {
+    flex-direction: column; /* Cards stack vertically */
+  }
+
+  .skeleton-card {
+    width: 100%; /* Occupy full width on small screens */
+  }
+}

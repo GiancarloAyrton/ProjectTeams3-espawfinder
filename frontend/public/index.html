@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="¿Perdiste o encontraste una mascota? 🐶🐱 Te ayudamos a reunirlas con sus dueños o encontrarles un hogar amoroso. Publica, adopta y cambia vidas hoy."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Espaw Finder</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,600,700%7CMontserrat:400,500,600,700" rel="stylesheet">
+      <link href="/fonts/flaticon/flaticon.css" rel="stylesheet" type="text/css">
+      <link href="/fonts/fontawesome/fontawesome-all.min.css" rel="stylesheet" type="text/css">
+      <!-- Fav icons -->
+      <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <!-- Bootstrap core CSS -->
+      <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- style CSS -->
+      <link href="/css/style.css" rel="stylesheet">
+      <!-- plugins CSS -->
+      <link href="/css/plugins.css" rel="stylesheet">
+      <!-- Colors CSS -->
+      <link href="/styles/maincolors.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  </head>
+  <body id="top">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div id="preloader">
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+           <div class="preloader-logo">
+              <!--logo -->
+              <img src="img/logo.png" alt="" class="img-fluid">
+              <!--preloader circle -->
+              <div class="lds-ring">
+                 <div></div>
+                 <div></div>
+                 <div></div>
+                 <div></div>
+              </div>
+           </div>
+           <!--/preloader logo -->
+        </div>
+        <!--/row -->
+     </div>
+    </div>
+    
+    </div>
+<!--
+    <div class="floating-banner" id="floating-banner">
+      <a href="/evento" target="_blank">
+      <img src="./img/call-to-action/halloweenAdss.webp" alt="Publicidad del Evento">
+      </a>
+      <button class="btn-close" onclick="closeBanner()">X</button>
+      <button class="btn-hide" onclick="hideBannerForTwoHours()">No volver a mostrar</button>
+
+    </div>
+
+    
+
+    
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    
+    <script>
+        // JavaScript para cerrar el banner
+        function closeBanner() {
+            document.getElementById('floating-banner').style.display = 'none';
+        }
+
+        // JavaScript para ocultar el banner durante 2 horas
+        function hideBannerForTwoHours() {
+            localStorage.setItem('bannerHidden', 'true');
+            localStorage.setItem('bannerHiddenTimestamp', Date.now());
+            closeBanner();
+        }
+
+        // Mostrar el banner después de un tiempo
+        window.onload = function() {
+            const bannerHidden = localStorage.getItem('bannerHidden');
+            const bannerHiddenTimestamp = localStorage.getItem('bannerHiddenTimestamp');
+            const currentTime = Date.now();
+
+            if (bannerHidden === 'true' && (currentTime - bannerHiddenTimestamp) < 2 * 60 * 60 * 1000) {
+                // No mostrar el banner si aún no han pasado 2 horas
+                return;
+            }
+
+            setTimeout(function() {
+                document.getElementById('floating-banner').style.bottom = '10px';
+            }, 3000); // El banner aparecerá después de 3 segundos
+        };
+    </script>
+    -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+      <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Custom Js -->
+      <script src="/js/custom.js"></script>
+      <script src="/js/plugins.js"></script>
+      <!-- Prefix free -->
+      <script src="/js/prefixfree.min.js"></script>
+      <!-- number counter script -->
+      <script src="/js/counter.js"></script>
+      <!-- maps -->
+      <script src="/js/map.js"></script>
+  </body>
+</html>

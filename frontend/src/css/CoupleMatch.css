@@ -1,0 +1,210 @@
+.couple-match-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 10px; /* Ajustar padding para móviles */
+  text-align: center;
+  background-color: #ffe6f000 !important;
+  background-image: url('../../public/img/call-to-action/valentine.webp'); /* Asegúrate de que la ruta sea correcta */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* Evitar desbordamiento */
+  
+  /* Establece un tamaño fijo o mínimo */
+  min-height: 500px; /* Asegura que tenga un tamaño consistente */
+  width: 100%;
+}
+
+#couple-seccion{
+  min-height: '600px';
+  width: '100%'
+}
+
+.couple-match-container img {
+  /* Prevenir que las imágenes internas alteren el tamaño */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Asegurar que el fondo no se mueva con el scroll */
+.couple-match-container {
+  background-attachment: fixed;
+}
+
+.custom-section {
+  padding-top: 0; /* Sobrescribe el padding */
+  padding-bottom: 0; /* Sobrescribe el padding */
+  background-color: #ffe6f000 !important;
+
+}
+
+.couple-match-cards {
+  display: flex;
+  flex-wrap: wrap; /* Cards se ajustan automáticamente */
+  justify-content: center; /* Centra las cards */
+  gap: 15px; /* Espaciado uniforme entre las cards */
+  flex-wrap: nowrap;
+}
+
+.couple-match-cards .card {
+  position: relative; 
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1rem;
+  width: 100%; /* Cards ocupan todo el ancho disponible en móviles */
+  max-width: 350px; /* Máximo ancho en pantallas más grandes */
+  transition: transform 0.2s;
+  margin: 10px auto; /* Centrar las cards */
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.badge.male {
+  background-color: #007bff; /* Azul para Macho */
+}
+
+.badge.female {
+  background-color: #ff69b4; /* Rosa para Hembra */
+}
+
+.couple-match-cards .card:hover {
+  transform: translateY(-5px);
+}
+
+.couple-match-cards .card .card-header {
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.couple-match-cards .card .card-header.male {
+  background-color: #3366ff;
+}
+
+.couple-match-cards .card .card-header.female {
+  background-color: #ff3366;
+}
+
+.couple-match-cards .card .card-body {
+  padding: 1rem;
+}
+
+.couple-match-cards .card .card-title {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.couple-match-cards .card .card-text {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.couple-match-cards .card .btn {
+  background-color: #ff3366;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%; /* Botón ocupa todo el ancho */
+}
+
+.couple-match-cards .card .btn:hover {
+  background-color: #e62957;
+}
+
+.couple-match-cards .card .likes {
+  margin-top: 0.5rem;
+  color: #ff3366;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 767px) {
+  #couple-seccion{
+    min-height: 1500px; /* Altura reducida en móviles */
+    padding: 10px; /* Padding más pequeño */
+  }
+
+  .couple-match-container {
+    padding: 15px 5px; /* Reducir padding en móviles */
+  }
+
+  .couple-match-cards {
+    flex-direction: column; /* Las cards se apilan verticalmente */
+    align-items: center; /* Centra las cards */
+    gap: 20px; /* Espaciado uniforme */
+  }
+
+  .couple-match-cards .card {
+    width: 90%; /* Las cards ocupan el 90% del ancho del contenedor */
+    max-width: 350px; /* Máximo ancho para pantallas más grandes */
+    margin: 0 auto; /* Centrar las cards */
+  }
+
+  .couple-match-cards .card .card-header {
+    padding: 10px;
+    font-size: 14px; /* Ajustar tamaño de fuente en móviles */
+  }
+
+  .couple-match-cards .card .card-title {
+    font-size: 18px; /* Reducir el tamaño del título */
+  }
+
+  .couple-match-cards .card .card-text {
+    font-size: 14px;
+  }
+
+  .couple-match-cards .card .btn {
+    font-size: 14px; /* Botón más compacto */
+    padding: 8px 12px;
+  }
+
+  .couple-match-cards .card .likes {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .couple-match-cards .card {
+    width: 100%; /* En pantallas muy pequeñas, ocupar todo el ancho */
+    max-width: 300px; /* Reducir el tamaño máximo */
+  }
+
+  .couple-match-cards .card .card-header {
+    font-size: 12px; /* Texto más pequeño en encabezados */
+  }
+
+  .couple-match-cards .card .card-title {
+    font-size: 16px; /* Título más pequeño */
+  }
+
+  .couple-match-cards .card .card-text {
+    font-size: 12px;
+  }
+
+  .couple-match-cards .card .btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .couple-match-cards .card .likes {
+    font-size: 12px;
+  }
+}

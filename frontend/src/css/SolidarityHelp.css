@@ -1,0 +1,180 @@
+.solidarity-help-container {
+  min-height: 600px;
+  background-image: url('../../public/img/call-to-action/ayuda.webp');
+  background-attachment: fixed;
+  text-align: center;
+  align-items: center;
+  padding: 20px 10px;
+  text-align: center;
+  background-color: #ffe6f0 !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+#solidarity-seccion{
+  min-height: '600px';
+  width: '100%'
+}
+
+.solidarity-help-container img {
+  /* Prevenir que las imágenes internas afecten el tamaño */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Asegura que el fondo permanezca estático */
+.solidarity-help-container {
+  background-attachment: fixed; /* Hace que el fondo no se mueva */
+}
+
+.custom-solidarity{
+  padding-top: 0; /* Sobrescribe el padding */
+  padding-bottom: 0; /* Sobrescribe el padding */
+}
+
+.solidarity-help-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 15px; /* Espaciado uniforme entre cards */
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 100%; /* Cards ocupan todo el ancho disponible en móviles */
+  max-width: 390px; /* Máximo ancho de las cards */
+  margin: 10px auto; /* Centrar las cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Cards dinámicamente se ajustan si hay espacio */
+}
+
+.card-header {
+  width: 100%;
+  height: 200px; /* Altura fija para imágenes */
+  overflow: hidden;
+  border-radius: 10px 10px 0 0; /* Bordes redondeados superiores */
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que las imágenes mantengan proporción y se recorten si es necesario */
+}
+
+.card-body {
+  padding: 15px;
+  text-align: left;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.likes {
+  color: #ff4081;
+  font-size: 1rem;
+}
+
+.contactar {
+  background-color: #ff4081;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.contactar:hover {
+  background-color: #e6396f;
+}
+
+@media (max-width: 767px) {
+  #solidarity-seccion{
+    min-height: 1702px; /* Altura reducida en móviles */
+  }
+
+  .solidarity-help-container {
+    padding: 15px 5px; /* Ajustar padding para móviles */
+  }
+
+  .solidarity-help-cards {
+    flex-direction: column; /* Cards en columna para móviles */
+    gap: 20px; /* Espaciado entre cards */
+    align-items: center; /* Centra las cards */
+  }
+
+  .card {
+    width: 100%; /* Cards ocupan el 100% del ancho disponible */
+    max-width: 350px; /* Límite máximo para pantallas más anchas */
+    margin: 0 auto; /* Centrar las cards */
+  }
+
+  .card-header {
+    height: 200px; /* Altura fija para mantener proporción */
+  }
+
+  .card-header img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Imagen mantiene proporción */
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .contactar {
+    font-size: 14px;
+    padding: 8px 12px; /* Botón más pequeño */
+  }
+
+  .likes {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* En pantallas más pequeñas ocupa todo el ancho */
+    max-width: 300px; /* Reducir el tamaño máximo */
+  }
+
+  .card-header {
+    height: 180px; /* Altura reducida para imágenes */
+  }
+
+  .card-title {
+    font-size: 14px; /* Texto más pequeño en pantallas reducidas */
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+
+  .contactar {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .likes {
+    font-size: 12px;
+  }
+}

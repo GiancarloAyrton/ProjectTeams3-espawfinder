@@ -1,0 +1,81 @@
+@media (max-width: 768px) {
+    .jumbo-heading {
+        margin-bottom: 0px;
+        position: relative;
+        text-align: left;
+    }
+    .container-fluid-home {
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 10px;
+    }
+  
+    .row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .singlepost img {
+      max-height: 200px;
+    }
+  
+    .adoption-header {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  
+    .post-details li {
+      font-size: 0.9rem;
+    }
+  
+    .breadcrumb-container {
+      font-size: 0.8rem;
+    }
+  
+    .card.bg-light {
+      padding: 15px;
+      margin: 10px 0;
+    }
+  
+    .card.bg-light .btn {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 544px) {
+    .jumbo-heading {
+        margin-bottom: 0px;
+        position: relative;
+        text-align: left;
+    }
+
+    .jumbotron h1 {
+      font-size: 1.5rem;
+    }
+  
+    .adoption-header {
+      font-size: 1rem;
+    }
+  
+    .breadcrumb-container {
+      font-size: 0.7rem;
+    }
+  
+    .singlepost img {
+      max-height: 150px;
+    }
+  
+    .post-details li {
+      font-size: 0.8rem;
+    }
+  
+    .card.bg-light .btn {
+      font-size: 0.8rem;
+      padding: 8px 10px;
+    }
+  
+    .card.bg-light h5 {
+      font-size: 1rem;
+    }
+  }

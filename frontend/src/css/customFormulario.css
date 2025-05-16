@@ -1,0 +1,158 @@
+/* styles.css */
+.centrar-todo{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  .center-formulario{
+    display: flex;
+    justify-content: center;
+  }
+  .form-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    margin-top: -70px;
+  }
+  
+  .form-options button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    flex: 1;
+  }
+  
+  .form-control.filled {
+    border: 3px solid #80C4EF; /* Cambiar el borde a azul */
+  }
+  
+  .form-container {
+    max-width: 90%; /* Ajusta el ancho máximo según tus necesidades */
+    margin: 0 center; /* Centrar horizontalmente */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para contraste */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto elevado */
+    border-radius: 10px; /* Bordes redondeados */
+    padding-bottom: -10px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-upload {
+    text-align: center;
+    border: 2px dashed #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  
+  .image-upload label {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .video-label div {
+    margin-top: 10px;
+  }
+  
+  .image-upload #preview {
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .form-control.filled {
+    border-color: #007bff;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  
+  /* customFormulario.css */
+  
+  .form-selection {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-selection button {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-selection button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .form-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .file-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .file-preview-item {
+    width: calc(33.333% - 10px);
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .file-preview-item img,
+  .file-preview-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .file-preview-item .remove-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .wide-input {
+    width: 100%;
+    max-width: 1000px; /* Ajusta este valor según tus necesidades */
+  }
+  
+  
+  .nav-pills .nav-link.active {
+    color: #fff !important;
+    background-color: #D61C62 !important; /* Color rojo para el botón activo */
+    border-color: #D61C62 !important;
+  }
+  
+  .nav-pills .nav-link:hover {
+    color: #fff !important; /* Letras blancas al hacer hover */
+    background-color: #D61C62 !important; /* Puedes cambiar este color si deseas un fondo diferente al hacer hover */
+  }
