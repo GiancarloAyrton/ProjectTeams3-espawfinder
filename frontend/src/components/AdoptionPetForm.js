@@ -4,6 +4,13 @@ import axios from 'axios';
 import FilePreview from '../components/FilePreview';
 
 const AdoptionPetForm = () => {
+  const getButtonText = () => {
+    if (isPublished) return '¡Publicado con éxito!';
+    if (isSubmitting) return 'Publicando...';
+    return 'Publicar';
+  };
+  
+  // Usage in your component:
   const [formData, setFormData] = useState({
     title: '',
     breed: '',
@@ -96,11 +103,9 @@ const AdoptionPetForm = () => {
               <h3>Información de la Mascota</h3>
               <div className="form-group image-upload">
                 <label htmlFor="media" className="video-label">
-                  <>
-                    <FilePreview files={formData.files} onRemove={handleFileRemove} />
-                    <div>Cargar imágenes o videos</div>
-                    <div>MP4 hasta 50MB</div>
-                  </>
+                  <FilePreview files={formData.files} onRemove={handleFileRemove} />
+                  <div>Cargar imágenes o videos</div>
+                  <div>MP4 hasta 50MB</div>
                 </label>
                 <input type="file" className="form-control-file" id="media" name="media" onChange={handleFileChange} multiple />
               </div>
@@ -193,12 +198,13 @@ const AdoptionPetForm = () => {
             <input type="text" className={`form-control wide-input ${formData.lostOrFoundLocation ? 'filled' : ''}`} id="lostOrFoundLocation" name="lostOrFoundLocation" value={formData.lostOrFoundLocation} onChange={handleChange} />
           </div>
           <MapView setFormData={setFormData} /> {/* Añadir el componente MapView aquí */}
+
           <button
             type="submit"
             className={`btn btn-publicar ${isPublished ? 'btn-success' : 'btn-primary'}`}
             disabled={isSubmitting}
           >
-            {isPublished ? '¡Publicado con éxito!' : isSubmitting ? 'Publicando...' : 'Publicar'}
+            {getButtonText()}
           </button>
         </form>
       </div>
