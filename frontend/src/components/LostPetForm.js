@@ -115,7 +115,7 @@ const LostPetForm = () => {
         },
       });
       console.log('Respuesta del servidor:', response.data);
-      const postId = response.data.data.id; 
+      const postId = response.data.id;  
       console.log('Publicación creada con ID:', postId);
       setIsPublished(true);
       setTimeout(() => {
