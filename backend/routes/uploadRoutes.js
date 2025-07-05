@@ -10,8 +10,7 @@ router.get('/found', uploadController.getPaginatedFoundFiles);
 router.get('/adoption', uploadController.getPaginatedAdoptionFiles);
 router.get('/lookingformate', uploadController.getPaginatedLookingForMateFiles);
 router.get('/solidarityHelp', uploadController.getSolidarityHelpPosts);
-router.get('/:id', uploadController.getSinglePost); // Nueva ruta para obtener una única publicación
-router.put('/edit/:id', uploadController.editPost); 
+router.get('/:id', uploadController.getSinglePost); 
 router.delete('/:id', uploadController.deletePost);
- 
+
 module.exports = router;
