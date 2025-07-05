@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import BASE_URL from '../api';
 const Login = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -18,7 +18,7 @@ const Login = ({ handleLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://espawfinder.com/backend/users/login', formData)
+    axios.post(`${BASE_URL}/users/login`, formData)
       .then(response => {
         console.log('Login exitoso:', response.data);
         handleLogin(response.data.token);
@@ -43,38 +43,43 @@ const Login = ({ handleLogin }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Iniciar Sesión</h2>
-      {errorMessage && <p className="text-danger">{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico</label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Iniciar Sesión</button>
-      </form>
+    <div className="d-flex justify-content-center" style={{ paddingTop: '200px' }}>
+      <div className="p-4 rounded shadow bg-white" style={{ width: '100%', maxWidth: '400px' }}>
+        <h2 className="text-center mb-4">Iniciar Sesión</h2>
+        {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group mb-3">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group mb-3">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100">
+            Iniciar Sesión
+          </button>
+        </form>
+      </div>
     </div>
   );
+
 };
 
 export default Login;

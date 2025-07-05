@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types'; 
 const FilePreview = ({ files = [], onRemove = () => {} }) => (
   <div className="file-preview">
     {files.map((file) => {

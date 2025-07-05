@@ -20,7 +20,7 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
             <ul className="navbar-nav ml-auto">
               {/* menu item */}
               <li className="nav-item active">
-                <a className="nav-link" href="/">Home</a>
+                <a className="nav-link" href="/">Inicio</a>
               </li>
               {/* menu items for dropdowns */}
               <li className="nav-item dropdown">
@@ -36,18 +36,19 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
                 </div>
               </li>
               {/* Dropdown 2 */}
+              {/* 
               <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adopt-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Adopta
-                        </a>
-                        <div class="dropdown-menu pattern2" aria-labelledby="adopt-dropdown">
-                           <a class="dropdown-item" href="adoption.html">Adoption Gallery</a>
-                           <a class="dropdown-item" href="adoption-single.html">Adoption Single Page</a>
-                           <a class="dropdown-item" href="adoption-stories.html">Adoption Stories</a>
-                           <a class="dropdown-item" href="events.html">Events</a>
-                           <a class="dropdown-item" href="event-single.html">Events Single Page</a>
-                        </div>
-                </li>
+                <a class="nav-link dropdown-toggle" href="#" id="adopt-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Adopta
+                </a>
+                <div class="dropdown-menu pattern2" aria-labelledby="adopt-dropdown">
+                  <a class="dropdown-item" href="adoption.html">Adoption Gallery</a>
+                  <a class="dropdown-item" href="adoption-single.html">Adoption Single Page</a>
+                  <a class="dropdown-item" href="adoption-stories.html">Adoption Stories</a>
+                  <a class="dropdown-item" href="events.html">Events</a>
+                  <a class="dropdown-item" href="event-single.html">Events Single Page</a>
+                </div>
+              </li> 
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="about-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sobre Nosotros</a>
                 <div className="dropdown-menu pattern2" aria-labelledby="about-dropdown">
@@ -58,7 +59,8 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
                   <a className="dropdown-item" href="careers.html">Careers</a>
                 </div>
               </li>
-                     {/*
+              */}
+              {/*
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="gallery-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Galeria
@@ -79,42 +81,38 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
                            <a class="dropdown-item" href="contact3.html">Contact Style 3</a>
                         </div>
                      </li>
-                     */}
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="others-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Otras paginas
-                        </a>
-                        <div class="dropdown-menu pattern2" aria-labelledby="others-dropdown">
-                           <a class="dropdown-item" href="blog.html">Blog Home 1</a>
-                           <a class="dropdown-item" href="blog2.html">Blog Home 2</a>
-                           <a class="dropdown-item" href="blog-single.html">Blog Single</a>
-                           <a class="dropdown-item" href="elements.html">Elements Page</a>
-                           <a class="dropdown-item" href="404.html">404 Page</a>
-                        </div>
-                     </li>
-                     {isAuthenticated ? (
-                      <>
-                        <li className="nav-item dropdown">
-                          <a className="nav-link dropdown-toggle" href="#" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Perfil
-                          </a>
-                          <div className="dropdown-menu pattern2" aria-labelledby="profile-dropdown">
-                            <Link className="dropdown-item" to="/profile">Ver Perfil</Link>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="/" onClick={handleLogout}>Cerrar Sesión</a>
-                          </div>
-                        </li>
-                      </>
-                      ) : (
-                        <>
-                        <li className="nav-item active">
-                          <a className="nav-link" href="/login">login</a>
-                        </li>
-                        <li className="nav-item active">
-                          <a className="nav-link" href="/register">Register</a>
-                        </li>
-                        </>
-                     )}
+                     
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="others-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Otras paginas
+                </a>
+                <div class="dropdown-menu pattern2" aria-labelledby="others-dropdown">
+                  <a class="dropdown-item" href="blog.html">Blog Home 1</a>
+                  <a class="dropdown-item" href="blog2.html">Blog Home 2</a>
+                  <a class="dropdown-item" href="blog-single.html">Blog Single</a>
+                  <a class="dropdown-item" href="elements.html">Elements Page</a>
+                  <a class="dropdown-item" href="404.html">404 Page</a>
+                </div>
+              </li>*/}
+              <li className="nav-item dropdown">
+                <a className="nav-link" href="/formulario">Publicar</a>
+              </li>
+              {isAuthenticated ? (
+                <>
+                  <li className="nav-item dropdown">
+                    <a className="nav-link" href="/" onClick={handleLogout}>Cerrar Sesión</a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item active">
+                    <a className="nav-link" href="/login">Iniciar sesion</a>
+                  </li>
+                  <li className="nav-item active">
+                    <a className="nav-link" href="/register">Registrarse</a>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

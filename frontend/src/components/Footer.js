@@ -4,49 +4,7 @@ const Footer = () => {
     return (
         <div className='footerG'>
 
-            <div className="container-fluid footer-bg block-padding">
-                <div className="container">
-                    <div className="col-lg-5 text-light text-center text-conten">
-                        <h2 id='textoflooter1'>Suscríbete a nuestro boletín</h2>
-                        <h9 id='textoflooter2'>Enviamos correos electrónicos una vez al mes,<br />¡no enviamos Spam!</h9>
-                        <div>ㅤ</div>
-
-                        <div id="mc_embed_signup">
-                            <form action="//yourlist.us12.list-manage.com/subscribe/post?u=04e646927a196552aaee78a7b&id=111"
-                                method="post"
-                                id="mc-embedded-subscribe-form"
-                                name="mc-embedded-subscribe-form"
-                                className="validate"
-                                target="_blank"
-                                noValidate>
-                                <div id="mc_embed_signup_scroll">
-                                    <div className="mc-field-group">
-                                        <div className="input-group">
-                                            <input className="form-control border2 input-lg required email"
-                                                type="email"
-                                                value=""
-                                                name="EMAIL"
-                                                placeholder="Tu correo electrónico aquí"
-                                                id="mce-EMAIL" />
-                                            <span className="input-group-btn">
-                                                <button className="btn btn-primary btn-sm btn-padding"
-                                                    type="submit"
-                                                    value="Subscribe"
-                                                    name="subscribe"
-                                                    id="mc-embedded-subscribe">Subscribe</button>
-                                            </span>
-                                        </div>
-                                        <div id="mce-responses" className="mailchimp">
-                                            <div className="alert alert-danger response" id="mce-error-response"></div>
-                                            <div className="alert alert-success response" id="mce-success-response"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
 
 
 
@@ -69,7 +27,7 @@ const Footer = () => {
                         <div className="col-lg-3">
                             <h2>Sobre Mi</h2>
                             <hr className="small-divider left" />
-                            <h3 className="mt-3 h6 description">Soy un desarrollador independiente dedicado a crear soluciones para marcan la diferencia. Quiero ayudar a las mascotas perdidas y en adopción a encontrar un hogar.</h3>
+                            <h3 className="mt-3 h6 description">Proyecto dedicado a ayudar a la comunidad  | ESPOL</h3>
                         </div>
                         <div className="col-lg-3">
                             <h4>Contactame</h4>
@@ -97,7 +55,7 @@ const Footer = () => {
                 </div>
                 <div className="">
                         <div className="credits col-sm-12">
-                        <p>Copyright 2024 - 2026 / Diseñado por <a href="http://www.giandev.com">GianDev.com</a></p>
+                        <p>Copyright 2024 - 2026 </p> 
                     </div>
                 </div>
             </footer>

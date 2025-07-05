@@ -2,11 +2,11 @@ import React, { useEffect, useState, lazy, Suspense, useRef } from 'react';
 import { Helmet } from 'react-helmet'; // ✅ Importación correcta
 import Footer from '../components/Footer';
 import SectionSkeleton from '../components/SectionSkeleton';
+import BASE_URL from '../api';  
 
 const CoupleMatch = lazy(() => import('../components/CoupleMatch'));
 const AdoptionGallery = lazy(() => import('../components/AdoptionCards'));
 const SolidarityHelpCard = lazy(() => import('../components/SolidarityHelpCard'));
-
 
 const HomeScreen = () => {
   const [isSectionVisible, setIsSectionVisible] = useState({
@@ -64,13 +64,13 @@ amistad animal, comunidad animal, conectar mascotas, adoptar mejor amigo, cambia
         {/* Open Graph */}
         <meta property="og:title" content="Espaw Finder - Encuentra Mascotas Perdidas y Adopta" />
         <meta property="og:description" content="¿Buscas a tu mascota perdida o quieres adoptar? En Espaw Finder conectamos a personas con mascotas necesitadas." />
-        <meta property="og:image" content="https://espawfinder.com/logo.png" />
-        <meta property="og:url" content="https://espawfinder.com" />
+        <meta property="og:image" content={`${BASE_URL}/logo.png`}/>
+        <meta property="og:url" content={`${BASE_URL}`} />
 
         {/* Twitter Card */}
         <meta name="twitter:title" content="Espaw Finder - Encuentra y Adopta Mascotas" />
         <meta name="twitter:description" content="¿Buscas a tu mascota perdida o quieres adoptar? Conéctate con dueños y adopta una mascota en Espaw Finder." />
-        <meta name="twitter:image" content="https://espawfinder.com/logo.png" />
+        <meta name="twitter:image" content={`${BASE_URL}/logo.png`}/> 
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
@@ -88,64 +88,10 @@ amistad animal, comunidad animal, conectar mascotas, adoptar mejor amigo, cambia
         <div class="">
           <div class="section-heading text-center">
             <p class="subtitle">Qué Ofrecemos</p>
-            <h2>Nuestros Servicios</h2>
           </div>
         </div>
       </section>
-      <div class="seccion-pronto container intro-row-boxes" data-aos="zoom-out">
-        <div class="rows">
-          <div class="col-lg-4">
-            <div class="serviceBox1 bg-tertiary pattern3">
-              <div class="service-content bg-light">
-                <div class="service-icon">
-                  <img src="img/services/service1.jpg" class="img-fluid rounded-circle" alt="" />
-                </div>
-                <h3 class=""><a href="services-single.html">Veterinarias</a></h3>
-                <p class="">
-                  ¿Tienes una clínica veterinaria? 🩺✨ Únete a nuestra comunidad para ayudar a más mascotas. Conectamos a dueños responsables con servicios confiables para el bienestar animal.
-                </p>
-              </div>
-              <div class="text-center">
-                <a class="btn btn-primary" href="services-single.html">Pronto</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="serviceBox1 bg-tertiary pattern3">
-              <div class="service-content bg-light">
-                <div class="service-icon">
-                  <img src="img/services/service3.jpg" class="img-fluid rounded-circle" alt="" />
-                </div>
-                <h3 class=""><a href="services-single.html">Adopciones</a></h3>
-                <p class="">
-                  Queremos ser un apoyo para refugios. ❤️🐕 Ofrecemos un espacio donde puedes mostrar a tus adorables rescatados, compartir historias de éxito, y fomentar la adopción responsable.
-                </p>
-              </div>
-              <div class="text-center">
-                <a class="btn btn-primary" href="services-single.html">Pronto</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="serviceBox1 bg-tertiary pattern3">
-              <div class="service-content bg-light">
-                <div class="service-icon">
-                  <img src="img/services/service2.jpg" class="img-fluid rounded-circle" alt="" />
-                </div>
-                <h3 class=""><a href="services-single.html">Peluquerías</a></h3>
-                <p class="">
-                  ¿Tu negocio de peluquería canina busca llegar a más clientes? ✂️🐾 Espaw Finder es un espacio donde conectamos a amantes de las mascotas con servicios de calidad.
-                </p>
-              </div>
-              <div class="text-center">
-                <a class="btn btn-primary" href="services-single.html">Pronto</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
 
       <div id="adoption-seccion">
@@ -233,14 +179,6 @@ amistad animal, comunidad animal, conectar mascotas, adoptar mejor amigo, cambia
           )}
         </div>
       </div>
-
-
-
-
-
-
-
-
       <Footer />
 
     </div>

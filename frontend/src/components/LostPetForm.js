@@ -4,7 +4,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import FilePreview from '../components/FilePreview';
 import './../css/customFormulario.css'
-
+import BASE_URL from '../api';
 
 const LostPetForm = () => {
   const [formData, setFormData] = useState({
@@ -62,7 +62,7 @@ const LostPetForm = () => {
     setIsSubmitting(true);
 
     const token = localStorage.getItem('token');
-    console.log('Token JWT desde localStorage:', token); // Log para verificar el token
+    console.log('Token JWT desde localStorage:', token);
 
     let userId = null;
 
@@ -70,10 +70,10 @@ const LostPetForm = () => {
       try {
         const decodedToken = jwtDecode(token);
         console.log('Token decodificado:', decodedToken); // Log para ver el contenido del token
-  
-        userId = decodedToken.userId; // Extraemos el userId del token
+
+        userId = decodedToken.id; // Extraemos el userId del token
         console.log('userId extraído del token:', userId); // Log para ver el userId extraído
-  
+
         if (!userId) {
           console.error('No se pudo encontrar el userId en el token.');
           setIsSubmitting(false);
@@ -89,41 +89,40 @@ const LostPetForm = () => {
     }
 
     // Obtener deviceId para publicación anónima
-  const deviceId = localStorage.getItem('anonymousPostUUID');
-  
-  // Crear FormData con los datos del formulario
-  const data = new FormData();
-  Object.keys(formData).forEach(key => {
-    if (key === 'files') {
-      formData.files.forEach(file => {
-        data.append('files', file);
-      });
-    } else {
-      data.append(key, formData[key]);
-    }
-  });
+    const deviceId = localStorage.getItem('anonymousPostUUID');
+
+    // Crear FormData con los datos del formulario
+    const data = new FormData();
+    Object.keys(formData).forEach(key => {
+      if (key === 'files') {
+        formData.files.forEach(file => {
+          data.append('files', file);
+        });
+      } else {
+        data.append(key, formData[key]);
+      }
+    });
 
     data.append('userId', userId);
     // Añadir el deviceId al FormData
     data.append('deviceId', deviceId);
-
-    console.log('FormData enviado:', data);
+   
 
     try {
-    const response = await axios.post('https://espawfinder.com/backend/upload/', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    console.log('Respuesta del servidor:', response.data);
-    const postId = response.data.data._id;
-    console.log('Publicación creada con ID:', postId);
-    setIsPublished(true);
-    setTimeout(() => {
-      window.location.href = `/post/${postId}`;
-    }, 2000);
-      
-      
+      const response = await axios.post(`${BASE_URL}/upload/`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Respuesta del servidor:', response.data);
+      const postId = response.data.data.id; 
+      console.log('Publicación creada con ID:', postId);
+      setIsPublished(true);
+      setTimeout(() => {
+        window.location.href = `/post/${postId}`;
+      }, 2000);
+
+
     } catch (error) {
       console.error('Error uploading files:', error);
     } finally {

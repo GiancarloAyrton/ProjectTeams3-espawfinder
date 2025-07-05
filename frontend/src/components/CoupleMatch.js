@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './../css/CoupleMatch.css'; // Asegúrate de tener este archivo CSS para los estilos
-
+import BASE_URL from '../api';   
 const CoupleMatch = () => {
   const [couplePosts, setCouplePosts] = useState([]);
 
   useEffect(() => {
     const fetchCouplePosts = async () => {
       try {
-        const response = await axios.get('https://espawfinder.com/backend/upload/lookingformate?limit=4'); // Ajustar el límite si es necesario
+        const response = await axios.get(`${BASE_URL}/upload/lookingformate?limit=4`); // Ajustar el límite si es necesario
         setCouplePosts(response.data.files);
       } catch (error) {
         console.error('Error fetching couple posts:', error);
@@ -23,7 +23,7 @@ const CoupleMatch = () => {
       <div className="">
         <div className="couple-match-cards">
           {couplePosts.map((post) => {
-            const imageUrl = `https://espawfinder.com/backend/uploads/${post.imagePaths}`;
+            const imageUrl = `${BASE_URL}/uploads/${post.imagePaths}`; 
             console.log('Image URL:', imageUrl); // Log para depuración
             return (
               <div className="card" key={post._id}>
@@ -35,7 +35,7 @@ const CoupleMatch = () => {
                   style={{ height: "200px", objectFit: "cover" }} 
                 />
                 {/* Género como estampo en la esquina superior derecha */}
-                <div className={`badge ${post.gender === 'Macho' ? 'male' : 'female'}`}>
+                <div className={`badge ${ post.gender === 'Macho' ? 'male' : 'female' }`}>
                   {post.gender}
                 </div>
                 {/* Cuerpo de la tarjeta */}

@@ -11,12 +11,12 @@ const MediaCarousel = ({ media }) => {
             {isImage ? (
               <img
                 className="d-block w-100"
-                src={`https://espawfinder.com/backend/uploads/${item.path}`}
+                src={`${BASE_URL}/uploads/${item.path}`}
                 alt={`Slide ${index}`}
               />
             ) : (
               <video className="d-block w-100" controls>
-                <source src={`https://espawfinder.com/backend/uploads/${item.path}`} type="video/mp4" />
+                <source src={`${BASE_URL}/uploads/${item.path}`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             )}

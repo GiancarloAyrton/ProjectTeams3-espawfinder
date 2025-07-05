@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { jwtDecode } from 'jwt-decode';
 import './../css/customFormulario.css';
 import './../css/SinglePost.css';
-
+import BASE_URL from '../api';   
 const SinglePost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const SinglePost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`https://espawfinder.com/backend/upload/${id}`);
+        const response = await axios.get(`${BASE_URL}/upload/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('❌ Error al obtener la publicación:', error);
@@ -31,8 +31,8 @@ const SinglePost = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token);
-        setAuthenticatedUserId(decodedToken.userId.toString());
+        const decodedToken = jwtDecode(token); 
+        setAuthenticatedUserId(decodedToken.id.toString());
         setUserRole(decodedToken.rol || 'sin rol');
         console.log('rol:', decodedToken.rol);
 
@@ -70,7 +70,7 @@ const SinglePost = () => {
       let response;
       if (newFiles.length === 0) {
         response = await axios.put(
-          `https://espawfinder.com/backend/upload/edit/${id}`,
+          `${BASE_URL}/upload/edit/${id}`,
           post,
           {
             headers: {
@@ -90,7 +90,7 @@ const SinglePost = () => {
         });
 
         response = await axios.put(
-          `https://espawfinder.com/backend/upload/edit/${id}`,
+          `${BASE_URL}/upload/edit/${id}`,
           formData,
           {
             headers: {
@@ -107,7 +107,7 @@ const SinglePost = () => {
         setNewFiles([]);
 
         // Volver a cargar la publicación actualizada
-        const updatedPost = await axios.get(`https://espawfinder.com/backend/upload/${id}`);
+        const updatedPost = await axios.get(`${BASE_URL}/upload/${id}`);
         setPost(updatedPost.data);
       }
     } catch (error) {
@@ -133,10 +133,10 @@ const SinglePost = () => {
         return;
       }
 
-      console.log('🔹 Enviando solicitud DELETE a:', `https://espawfinder.com/backend/upload/${id}`);
+      console.log('🔹 Enviando solicitud DELETE a:', `${BASE_URL}/upload/${id}`);
       console.log('🔹 Token utilizado:', token);
 
-      const response = await axios.delete(`https://espawfinder.com/backend/upload/${id}`, {
+      const response = await axios.delete(`${BASE_URL}/upload/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log('✅ Respuesta del servidor:', response);
@@ -184,14 +184,6 @@ const SinglePost = () => {
         <div className="container">
           <div className="jumbo-heading" data-aos="fade-up">
             <h1 className="Busqueda">{formatStatus(post.status)}</h1>
-            <div className="breadcrumb-container">
-              <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                  <li className="breadcrumb-item"><a href="/">Home</a></li>
-                  <li className="breadcrumb-item active" aria-current="page">{formatStatus(post.status)}</li>
-                </ol>
-              </nav>
-            </div>
           </div>
         </div>
       </div>
@@ -204,7 +196,7 @@ const SinglePost = () => {
               <div className="col-md-5 singlepost">
                 {post.imagePaths?.length > 0 ? (
                   <img
-                    src={`https://espawfinder.com/backend/uploads/${post.imagePaths[0]}`}
+                    src={`${BASE_URL}/uploads/${post.imagePaths}`} 
                     alt={post.title}
                     className="img-fluid rounded mb-3"
                     style={{ height: '300px', objectFit: 'cover' }}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MapView from '../components/MapView';
 import axios from 'axios';
 import FilePreview from '../components/FilePreview';
-
+import BASE_URL from '../api';   
 const SolidarityHelpForm = () => {
   const [formData, setFormData] = useState({
     title: '',
@@ -69,7 +69,7 @@ const SolidarityHelpForm = () => {
     // Añadir el deviceId al FormData
     data.append('deviceId', deviceId);
     try {
-      const response = await axios.post('https://espawfinder.com/backend/upload', data, {
+      const response = await axios.post(`${BASE_URL}/upload`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -77,7 +77,7 @@ const SolidarityHelpForm = () => {
       console.log('Files uploaded successfully:', response.data);
       setIsPublished(true);
       setTimeout(() => {
-        window.location.href = `/publicacion/${response.data.data._id}`;
+        window.location.href = `/post/${response.data.id}`; 
       }, 2000);
     } catch (error) {
       console.error('Error uploading files:', error);

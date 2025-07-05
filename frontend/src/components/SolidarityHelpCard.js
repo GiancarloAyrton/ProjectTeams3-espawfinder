@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './../css/SolidarityHelp.css'; // Asegúrate de que este archivo CSS existe y está configurado
-
+import BASE_URL from '../api';   
 const SolidarityHelpCard = () => {
   const [helpPosts, setHelpPosts] = useState([]);
 
   useEffect(() => {
     const fetchHelpPosts = async () => {
       try {
-        const response = await axios.get('https://espawfinder.com/backend/upload/solidarityhelp?limit=4'); // Ajusta el límite si es necesario
+        const response = await axios.get(`${BASE_URL}/upload/solidarityhelp?limit=4`); // Ajusta el límite si es necesario
         setHelpPosts(response.data.files);
       } catch (error) {
         console.error('Error fetching help posts:', error);
@@ -27,7 +27,7 @@ const SolidarityHelpCard = () => {
         </div>
         <div className="solidarity-help-cards">
           {helpPosts.map((post) => {
-            const imageUrl = `https://espawfinder.com/backend/uploads/${post.imagePaths}`;
+            const imageUrl = `${BASE_URL}/uploads/${post.imagePaths}`;
             console.log('Image URL:', imageUrl); // Aquí está el console.log para depuración
             return (
               <div className="card" key={post._id}>

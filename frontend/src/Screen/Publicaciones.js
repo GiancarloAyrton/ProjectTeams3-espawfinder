@@ -4,7 +4,7 @@ import PostCard from './../components/PostCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Preloader from '../components/Preloader';
 import '../css/Publicaciones.css'
-
+import BASE_URL from '../api';   
 const Posts = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [displayedPosts, setDisplayedPosts] = useState([]);
@@ -35,7 +35,8 @@ const Posts = () => {
 
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('https://espawfinder.com/backend/upload/all');
+        const response = await axios.get(`${BASE_URL}/upload/all`); 
+        console.log('📥 Respuesta cruda:', response.data); 
         if (response.data.files) {
           setAllPosts(response.data.files);
           setDisplayedPosts(response.data.files.slice(0, 10));
@@ -227,7 +228,7 @@ const Posts = () => {
               >
                 <div className="posts-container">
                   {displayedPosts.map((post) => (
-                    <PostCard key={post._id.$oid} post={post} />
+                    <PostCard key={post.id} post={post} /> 
                   ))}
                 </div>
               </InfiniteScroll>

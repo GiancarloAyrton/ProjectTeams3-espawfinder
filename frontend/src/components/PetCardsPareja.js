@@ -9,7 +9,7 @@ const PetCardsPareja = () => {
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        const response = await axios.get('https://espawfinder.com/upload/pareja'); // Asegúrate de que esta URL sea correcta
+        const response = await axios.get(`${BASE_URL}/upload/pareja`); // Asegúrate de que esta URL sea correcta
         setPets(response.data);
       } catch (error) {
         console.error('Error fetching pets:', error);

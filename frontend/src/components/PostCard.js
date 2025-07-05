@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import BASE_URL from '../api'; 
 const PostCard = ({ post }) => {
   const navigate = useNavigate();
   const {
-    _id,
+    id,
     title,
     breed,
     color,
@@ -20,9 +20,9 @@ const PostCard = ({ post }) => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`https://espawfinder.com/backend/upload/${_id}`);
+      const response = await axios.get(`${BASE_URL}/upload/${id}`);
       console.log(response.data);
-      navigate(`/post/${_id}`);
+      navigate(`/post/${id}`);  
     } catch (error) {
       console.error('Error fetching post:', error);
     }
@@ -39,7 +39,7 @@ const PostCard = ({ post }) => {
         <div className="card-header p-0" style={{ height: '350px', overflow: 'hidden' }}>
           {imagePaths.length > 0 ? (
             <img
-              src={`https://espawfinder.com/backend/uploads/${imagePaths[0]}`}
+              src={`${BASE_URL}/uploads/${imagePaths}`}
               alt={title}
               className="img-fluid w-100"
               style={{ height: 'auto', width: '100%', objectFit: 'cover', objectPosition: 'center'}}
