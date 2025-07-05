@@ -1,45 +1,54 @@
-// server.js
+
+// server.mysql.js
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
-const authenticateJWT = require('./middleware/authenticateJWT');
-
-
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI;
+const PORT = 3001;
+const path = require('path');
 
-mongoose.connect(MONGODB_URI, {})
-.then(() => {
-  console.log('Conectado a la base de datos MongoDB');
-})
-.catch((err) => {
-  console.error('Error al conectar a MongoDB:', err);
+// Conexión a MySQL
+const db = require('./config/mysql');
+db.connect((err) => {
+  if (err) {
+    console.error('❌ Error al conectar a MySQL:', err.message);
+  } else {
+    console.log('✅ Conectado a MySQL');
+  }
 });
 
-// Middleware
+// Middlewares globales
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
+// Ruta raíz para prueba
+app.get('/', (req, res) => {
+  res.send('✅ Backend operativo y conectado a MySQL');
+});
 
-
-
-// Rutas
+// Rutas principales
 const petRoutes = require('./routes/petsRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+// Middleware JWTs
+const authenticateJWT = require('./middleware/authenticateJWT');
+const authenticateOptionalJWT = require('./middleware/authenticateOptionalJWT');
 
+// Rutas públicas o semi públicas
 app.use('/pets', petRoutes);
+app.use('/upload', authenticateOptionalJWT, uploadRoutes);
+// Rutas protegidas 
+app.use('/users', userRoutes); // Login/register públicas; perfil requiere JWT dentro del controlador
+app.use('/uploads', (req, res, next) => {
+  console.log('🟡 Se pidió:', req.url);
+  next();
+}, express.static(path.join(__dirname, 'uploads')));
 
-app.use(authenticateJWT);
-app.use('/users', userRoutes);
-
-
-// Middleware para manejo de errores
+// Manejo de errores
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Error del servidor');
