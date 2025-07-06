@@ -1,10 +1,12 @@
 # 🐾 Espaw Finder – Animal Rescue Web Platform
 
-**Espaw Finder** is a web platform that allows users to register and view posts of lost animals, pets up for adoption, or those seeking a mate. The application includes JWT authentication, image uploads, filters by post type, and role-based dashboards.
+**Espaw Finder** is a web platform that allows users to register and view posts of lost animals, pets up for adoption, or those seeking a mate. The application includes JWT authentication, image uploads, filters by post type, and role-based dashboards.<br>
 💻 This is a local development project – both backend and frontend must be installed and run locally for the platform to function properly.
+
 ---
 
-👥 Team Members
+## 👥 Team Members
+
 -Raúl Arturo León Morán
 
 -Juan Carlos Gallo Muñoz
