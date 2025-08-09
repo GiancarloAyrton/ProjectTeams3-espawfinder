@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../api';
+
 const Login = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -18,6 +19,13 @@ const Login = ({ handleLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // ✅ Validación extra de seguridad en el cliente
+    if (formData.password.length < 8) {
+      setErrorMessage('La contraseña debe tener al menos 8 caracteres.');
+      return;
+    }
+
     axios.post(`${BASE_URL}/users/login`, formData)
       .then(response => {
         console.log('Login exitoso:', response.data);
@@ -26,16 +34,12 @@ const Login = ({ handleLogin }) => {
       })
       .catch(error => {
         if (error.response) {
-          // La solicitud fue hecha y el servidor respondió con un código de estado
-          // que cae fuera del rango de 2xx
           setErrorMessage(error.response.data.message);
           console.error('Error al iniciar sesión:', error.response.data.message);
         } else if (error.request) {
-          // La solicitud fue hecha pero no se recibió respuesta
           setErrorMessage('No se recibió respuesta del servidor');
           console.error('No se recibió respuesta del servidor:', error.request);
         } else {
-          // Algo pasó al configurar la solicitud que desencadenó un error
           setErrorMessage('Error al configurar la solicitud');
           console.error('Error al configurar la solicitud:', error.message);
         }
@@ -69,6 +73,7 @@ const Login = ({ handleLogin }) => {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              minLength={8} // ✅ validación HTML
               required
             />
           </div>
@@ -79,7 +84,6 @@ const Login = ({ handleLogin }) => {
       </div>
     </div>
   );
-
 };
 
 export default Login;

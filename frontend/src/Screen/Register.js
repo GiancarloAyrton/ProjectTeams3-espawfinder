@@ -1,7 +1,7 @@
-// Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../api';
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -26,6 +26,13 @@ const Register = () => {
     setErrorMessage('');
     setSuccessMessage('');
 
+    // 🔒 Validación de seguridad para contraseña
+    if (formData.password.length < 8) {
+      setErrorMessage('La contraseña debe tener al menos 8 caracteres.');
+      setLoading(false);
+      return;
+    }
+
     // Obtener el UUID desde localStorage
     const deviceId = localStorage.getItem('anonymousPostUUID');
 
@@ -33,7 +40,7 @@ const Register = () => {
       username: formData.name,
       email: formData.email,
       password: formData.password,
-      deviceId // Enviar el deviceId para actualizar las publicaciones anónimas
+      deviceId
     };
 
     try {
@@ -46,9 +53,8 @@ const Register = () => {
       setSuccessMessage('Registro exitoso. ¡Bienvenido!');
       console.log('Registro exitoso:', response.data);
 
-      // Redirigir al usuario después del registro
       setTimeout(() => {
-        window.location.href = '/dashboard'; // Cambia la ruta según sea necesario
+        window.location.href = '/dashboard';
       }, 2000);
 
     } catch (error) {
@@ -97,6 +103,7 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              minLength={8} // ✅ validación HTML
               required
             />
           </div>
@@ -108,7 +115,6 @@ const Register = () => {
         </form>
       </div>
     </div>
-
   );
 };
 

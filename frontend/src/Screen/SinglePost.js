@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { jwtDecode } from 'jwt-decode';
 import './../css/customFormulario.css';
 import './../css/SinglePost.css';
-import BASE_URL from '../api';   
+import BASE_URL from '../api';
 const SinglePost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const SinglePost = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token); 
+        const decodedToken = jwtDecode(token);
         setAuthenticatedUserId(decodedToken.id.toString());
         setUserRole(decodedToken.rol || 'sin rol');
         console.log('rol:', decodedToken.rol);
@@ -90,7 +90,7 @@ const SinglePost = () => {
         });
 
         response = await axios.put(
-          `${BASE_URL}/upload/edit/${id}`,
+          `${BASE_URL}/upload/edit/${id}`, 
           formData,
           {
             headers: {
@@ -160,7 +160,7 @@ const SinglePost = () => {
 
   if (loading) return <p className="text-center mt-5">Cargando publicación...</p>;
   if (!post) return <p className="text-center mt-5">No se encontró la publicación.</p>;
-
+  const isOwner = authenticatedUserId == post.userId || userRole === "administrador";
   const formatStatus = (status) => {
     switch (status) {
       case 'lost':
@@ -196,7 +196,7 @@ const SinglePost = () => {
               <div className="col-md-5 singlepost">
                 {post.imagePaths?.length > 0 ? (
                   <img
-                    src={`${BASE_URL}/uploads/${post.imagePaths}`} 
+                    src={`${BASE_URL}/uploads/${post.imagePaths}`}
                     alt={post.title}
                     className="img-fluid rounded mb-3"
                     style={{ height: '300px', objectFit: 'cover' }}
@@ -242,7 +242,7 @@ const SinglePost = () => {
                   </>
                 ) : (
                   <>
-                    <p className="h4 adoption-header" style={{ color: "#333"}}><strong>{post.title}</strong></p>
+                    <p className="h4 adoption-header" style={{ color: "#333" }}><strong>{post.title}</strong></p>
                     <div className="edit-container">
                       <div className="edit-row">
                         <label><strong>Raza: </strong></label>
@@ -311,7 +311,7 @@ const SinglePost = () => {
               </div>
             </div>
 
-            {(authenticatedUserId === post.userId || userRole === "administrador") && !isEditing && (
+            {(isOwner || (userRole === "administrador")) && !isEditing && (
               <div className="text-center my-4">
                 <button className="btn btn-warning" onClick={() => setIsEditing(true)}>Editar</button>
                 <button className="btn btn-danger ml-2" onClick={handleDelete}>Eliminar</button>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomeScreen from './Screen/HomeScreen'
 import Navbar from './components/Navbar';
 import Formulario from './Screen/Formulario';
 import PostsScreen from './Screen/Publicaciones';
+import PostUser from './Screen/PublicacionesUser';
 import SinglePost from './Screen/SinglePost';
 import Register from './Screen/Register';
 import Login from './Screen/Login';
@@ -36,6 +37,7 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/formulario" element={<Formulario />} />
         <Route path="/posts" element={<PostsScreen />} />
+        <Route path="/postsUser/" element={<PostUser />} />  
         <Route path="/post/:id" element={<SinglePost />} />
         <Route path="/register" element={isAuthenticated ? <Navigate to="/" /> : <Register />} />
         <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <Login handleLogin={handleLogin} />} />

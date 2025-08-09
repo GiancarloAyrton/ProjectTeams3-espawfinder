@@ -26,6 +26,14 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
               <li className="nav-item dropdown">
                 <a className="nav-link" href="/posts">Publicaciones</a>
               </li>
+              { (isAuthenticated) ? (
+                <>
+                  < li className="nav-item dropdown">
+                    <a className="nav-link" href="/postsUser">Mis publicaciones</a>
+                  </li>
+                </>
+              ) : ""}
+
               {/* Dropdown 1 
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="services-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
@@ -117,7 +125,7 @@ const Navbar = ({ isAuthenticated, handleLogout }) => {
           </div>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 }
 
