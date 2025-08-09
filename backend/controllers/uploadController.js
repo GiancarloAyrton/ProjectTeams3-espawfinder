@@ -76,6 +76,120 @@ exports.getAllFiles = (req, res) => {
   });
 };
 
+// Obtener todas las publicaciones de un usuario;
+exports.getIdAllPost = (req, res) => {
+  const id = req.params.id;
+
+  db.query('SELECT * FROM uploads where userId = ? ORDER BY createdAt DESC', [id], (err, files) => {
+    if (err) return res.status(500).json({ error: 'Error retrieving data', details: err });
+    res.json({
+      files,
+    });
+  });
+};
+
+exports.editPostWithFiles = (req, res) => {
+  upload(req, res, (err) => {
+    if (err) return res.status(500).json({ message: 'Error uploading files', error: err });
+
+    const { id } = req.params;
+
+    // 1) Traer registro actual (para combinar archivos y borrar los removidos)
+    db.query('SELECT * FROM uploads WHERE id = ?', [id], (selErr, rows) => {
+      if (selErr) return res.status(500).json({ message: 'DB error (select)', error: selErr });
+      if (!rows.length) return res.status(404).json({ message: 'No post found with this ID' });
+
+      const current = rows[0];
+      const curImages = (current.imagePaths || '').split(',').filter(Boolean);
+      const curVideos = (current.videoPaths || '').split(',').filter(Boolean);
+
+      const newImages = (req.files || []).filter(f => f.mimetype.startsWith('image/')).map(f => f.filename);
+      const newVideos = (req.files || []).filter(f => f.mimetype.startsWith('video/')).map(f => f.filename);
+
+      const parseList = (val) => {
+        if (!val) return [];
+        try { const j = JSON.parse(val); return Array.isArray(j) ? j : []; } catch { /* CSV fallback */ }
+        return String(val).split(',').map(s => s.trim()).filter(Boolean);
+      };
+
+      const removeImages = parseList(req.body.removeImages);
+      const removeVideos = parseList(req.body.removeVideos);
+
+      const keptImages = curImages.filter(fn => !removeImages.includes(fn));
+      const keptVideos = curVideos.filter(fn => !removeVideos.includes(fn));
+
+      const finalImages = [...keptImages, ...newImages];
+      const finalVideos = [...keptVideos, ...newVideos];
+
+      const {
+        title, breed, type, color, gender, age, size, petCondition,
+        lostOrFoundDate, lostOrFoundLocation, latitude, longitude,
+        ownerName, reward, ownerPhone, ownerEmail, ownerMessage,
+        deviceId, status
+      } = req.body;
+
+      // 2) Update (COALESCE mantiene el valor si no envías ese campo)
+      const sql = `
+        UPDATE uploads SET
+          title = COALESCE(?, title),
+          breed = COALESCE(?, breed),
+          type = COALESCE(?, type),
+          color = COALESCE(?, color),
+          gender = COALESCE(?, gender),
+          age = COALESCE(?, age),
+          size = COALESCE(?, size),
+          petCondition = COALESCE(?, petCondition),
+          lostOrFoundDate = COALESCE(?, lostOrFoundDate),
+          lostOrFoundLocation = COALESCE(?, lostOrFoundLocation),
+          latitude = COALESCE(?, latitude),
+          longitude = COALESCE(?, longitude),
+          ownerName = COALESCE(?, ownerName),
+          reward = COALESCE(?, reward),
+          ownerPhone = COALESCE(?, ownerPhone),
+          ownerEmail = COALESCE(?, ownerEmail),
+          ownerMessage = COALESCE(?, ownerMessage),
+          deviceId = COALESCE(?, deviceId),
+          status = COALESCE(?, status),
+          imagePaths = ?,
+          videoPaths = ?,
+          updatedAt = NOW()
+        WHERE id = ?
+      `;
+      const params = [
+        title ?? null, breed ?? null, type ?? null, color ?? null, gender ?? null,
+        age ?? null, size ?? null, petCondition ?? null, lostOrFoundDate ?? null,
+        lostOrFoundLocation ?? null, latitude ?? null, longitude ?? null,
+        ownerName ?? null, reward ?? null, ownerPhone ?? null, ownerEmail ?? null,
+        ownerMessage ?? null, deviceId ?? null, status ?? null,
+        finalImages.join(','), finalVideos.join(','), id
+      ];
+
+      db.query(sql, params, (upErr, result) => {
+        if (upErr) return res.status(500).json({ message: 'DB error (update)', error: upErr });
+        if (result.affectedRows === 0) return res.status(404).json({ message: 'No post updated' });
+
+        // 3) Borrar del disco los archivos eliminados
+        const baseDir = path.join(__dirname, '../uploads');
+        const toDelete = [
+          ...curImages.filter(fn => removeImages.includes(fn)),
+          ...curVideos.filter(fn => removeVideos.includes(fn)),
+        ];
+        toDelete.forEach(fn => {
+          const full = path.join(baseDir, fn);
+          fs.unlink(full, (e) => { if (e && e.code !== 'ENOENT') console.warn('No se pudo borrar:', full, e.message); });
+        });
+ 
+        res.json({
+          message: 'Post updated successfully',
+          id,
+          imagePaths: finalImages,
+          videoPaths: finalVideos
+        });
+      });
+    });
+  });
+};
+ 
 // Obtener publicaciones paginadas por estado
 function getPaginatedByStatus(status) {
   return (req, res) => {
@@ -182,7 +296,7 @@ exports.deletePost = (req, res) => {
 
     res.json({ message: 'Post deleted successfully' });
   });
-}; 
+};
 
 
 exports.getSinglePost = (req, res) => {
