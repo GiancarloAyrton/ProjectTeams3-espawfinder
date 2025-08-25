@@ -1,0 +1,4 @@
+src/Screen/Publicaciones.js
+src/Screen/SinglePost.js
+src/components/Navbar.js
+src/components/PostCard.js
